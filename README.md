@@ -1,2 +1,1 @@
-# THUNWAP
-for test
+# LINE-BOT-PHP-Starter
