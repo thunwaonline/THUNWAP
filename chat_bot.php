@@ -15,12 +15,17 @@ $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CS
     //เก็บ user id 
     $user_line_id = $arrayJson['events'][0]['source']['userId'];
     
+    // ลง DB
+    pg_query($db_connection, "INSERT INTO account (line_id,status) VALUES('$user_line_id','1') ");
+
+
+    
 
 #ตัวอย่าง Message Type "Text"
     if($message == "ดีคับ"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา".$user_line_id;
+        $arrayPostData['messages'][0]['text'] = "ดีจ้าาาา";
         replyMsg($arrayHeader,$arrayPostData);
     }
     #ตัวอย่าง Message Type "Sticker"
