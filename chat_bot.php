@@ -16,7 +16,7 @@ $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CS
     $user_line_id = $arrayJson['events'][0]['source']['userId'];
     
     // ลง DB
-    pg_query($db_connection, "INSERT INTO account (line_id,status) VALUES('$user_line_id','1') ");
+    pg_query($connection, "INSERT INTO account (line_id,status) VALUES('$user_line_id','1') ");
 
 
     
