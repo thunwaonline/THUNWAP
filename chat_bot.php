@@ -1,3 +1,4 @@
+<?php include "include/connect.php"; ?>
 <?php
 $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CSTh3H+eDbWKikgYtA6mdTNRO+TOb6GlQL/UlMU+XDkR1Zp5lL4NC9RH94Zevq7Hrf5KydxMODpcybL3Keb9imuAdB04t89/1O/w1cDnyilFU=';
     
@@ -10,11 +11,16 @@ $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CS
     
     //รับข้อความจากผู้ใช้
     $message = $arrayJson['events'][0]['message']['text'];
+
+    //เก็บ user id 
+    $user_line_id = $arrayJson['events'][0]['source']['userId'];
+    
+
 #ตัวอย่าง Message Type "Text"
     if($message == "ดีคับ"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
+        $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา".$user_line_id;
         replyMsg($arrayHeader,$arrayPostData);
     }
     #ตัวอย่าง Message Type "Sticker"
@@ -26,7 +32,7 @@ $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CS
         replyMsg($arrayHeader,$arrayPostData);
     }
     #ตัวอย่าง Message Type "Image"
-    else if($message == "รูปภาพ"){
+    else if($message == "รูป"){
         $image_url = "https://i.pinimg.com/originals/cc/22/d1/cc22d10d9096e70fe3dbe3be2630182b.jpg";
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "image";
@@ -48,7 +54,7 @@ $accessToken = '4jqw6X3bCLfP3A7nUKyCd5uOQObSiQj0fqKGc5R/YbTfVIFPdLC11bArjhwzp9CS
     else if($message == "บาย"){
         $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
         $arrayPostData['messages'][0]['type'] = "text";
-        $arrayPostData['messages'][0]['text'] = "อย่าทิ้งกันไป";
+        $arrayPostData['messages'][0]['text'] = "บ๊ายย";
         $arrayPostData['messages'][1]['type'] = "sticker";
         $arrayPostData['messages'][1]['packageId'] = "1";
         $arrayPostData['messages'][1]['stickerId'] = "131";
